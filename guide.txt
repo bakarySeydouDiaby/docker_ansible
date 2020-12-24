@@ -1,0 +1,6 @@
+source :
+https://www.youtube.com/watch?v=yqLPUOsy-8M&t=402s ==> video youtube
+
+https://gist.github.com/ttwthomas/017891e536f745dcbcc5d0bc160a2643 ==> les fihiers github
+
+https://hub.docker.com/r/williamyeh/ansible/dockerfile ==> l'image du dockerhub ansible
