@@ -3,7 +3,7 @@ services:
   master:
     build:
       context: .
-      dockerfile: ./master.Dockerfile
+      dockerfile: ./master_Dockerfile
     working_dir: /root/playbooks
     volumes:
       - /home/bakary/devops/docker/docker_ansible/playbooks:/root/playbooks
@@ -13,16 +13,16 @@ services:
   serveurs_web:
     build:
       context: .
-      dockerfile: ./server.Dockerfile
+      dockerfile: ./server_Dockerfile
 
   database:
     build:
       context: .
-      dockerfile: ./server.Dockerfile
+      dockerfile: ./server_Dockerfile
 
   loadbalancer:
     build:
       context: .
-      dockerfile: ./server.Dockerfile
+      dockerfile: ./server_Dockerfile
     ports: 
     - 8080:80
