@@ -1,6 +1,74 @@
+### partie 1 : dockerfile ; docker-compose.yml
+
 source :
 https://www.youtube.com/watch?v=yqLPUOsy-8M&t=402s ==> video youtube
 
 https://gist.github.com/ttwthomas/017891e536f745dcbcc5d0bc160a2643 ==> les fihiers github
 
 https://hub.docker.com/r/williamyeh/ansible/dockerfile ==> l'image du dockerhub ansible
+
+
+docker-compose
+dockerfile
+volumes
+network
+
+
+### partie 2 : start, stop, up, down, IP-address, user devops
+=============================================================
+creation d'un fichier de script qui permet de lancer differntes commandes,
+dont la creation du user devops dans le master uniquement
+
+<====> l'idée c'est ensuite de creer le user "devops" dans les remotes hosts
+        à partir de playbook ansible (VOIR PARTIE 3)
+scripting basée sur xavki : ~/Bureau/bak_projet/projet_xavki/ansible_tuto
+##### cree user dans dockerfile de master :
+==> http://redhatgov.io/workshops/security_containers/exercise1.2/
+=======> NE FONCTIONNE PAS
+#Creation d'un fichier de scriptbash.sh pour differents services dont creation user
+                        ----------------
+
+#######partie3 : SSH et ansible -m ping
+=======================================
+Mis en place de ssh entre les conteneurs
+Nous avons déjà tout installé et creé un user devops dans docker_ansible_master_1
+base : https://devops4solutions.com/setup-ssh-between-two-aws-ec2-instances-using-ansible/
+Nous allons telecharger avec git le repository pour :
+- creer le user dans les remote hosts
+- mettre en place le ssh
+
+1. clone du repository contenant les roles et les inventaires : à modifier à notre
+    convenance
+    Comme on a cree un volume sur docker-compose.yml ==> clone depuis notre ordinateur local: ~/devops/docker/docker_ansible/playbooks$
+==> git clone https://github.com/devops4solutions/Ansible-Sample-Application-Deployment.git
+
+
+
+
+
+Quulques outils git:
+====================
+echo "# docker_ansible" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/bakarySeydouDiaby/docker_ansible.git
+git push -u origin main
+
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/bakarySeydouDiaby/docker_ansible.git
+git branch -M main
+git push -u origin main
+
+
+
+####
+# commandes docker-compose
+docker-compose up -d
+docker-compose scale serveurs_web=5
+docker-compose down
+==> https://docs.docker.com/compose/reference/stop/
+####
