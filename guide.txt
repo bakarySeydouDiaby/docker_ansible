@@ -28,6 +28,9 @@ scripting basée sur xavki : ~/Bureau/bak_projet/projet_xavki/ansible_tuto
 #Creation d'un fichier de scriptbash.sh pour differents services dont creation user
                         ----------------
 
+
+II) ANSIBLE
+
 #######partie3 : SSH et ansible -m ping
 =======================================
 Mis en place de ssh entre les conteneurs
@@ -40,13 +43,41 @@ Nous allons telecharger avec git le repository pour :
 1. clone du repository contenant les roles et les inventaires : à modifier à notre
     convenance
     Comme on a cree un volume sur docker-compose.yml ==> clone depuis notre ordinateur local: ~/devops/docker/docker_ansible/playbooks$
-==> git clone https://github.com/devops4solutions/Ansible-Sample-Application-Deployment.git
+==> sudo git clone https://github.com/devops4solutions/Ansible-Sample-Application-Deployment.git
+
+===> METHODE COMPLIQUEE
+
+Finalement après avoir visionné xavki  : https://www.youtube.com/watch?v=dpDQ94huxmI
+je vais d'abord mettre en place un ssh manuel uniquement sur docker_ansible_serveurs_web_5
+qui est prévue comme serveur de qual (un seul en qual)
+==> notion de ssh-agent ; ssh-add ; fichier .ssh/config pour connexion ssh plus simple
+===> tout d'abord, creons le user devops sur docker_ansible_serveurs_web_5
+
+
+1) modification /etc/hosts de master
+====================================
+172.23.0.4  docker_ansible_serveurs_web_1
+172.23.0.8  docker_ansible_serveurs_web_2
+172.23.0.7  docker_ansible_serveurs_web_3
+172.23.0.6  docker_ansible_serveurs_web_4
+172.23.0.9  docker_ansible_serveurs_web_5
+172.23.0.3  docker_ansible_database_1
+172.23.0.5  docker_ansible_loadbalancer_1
+
+2) test ping de docker_ansible_serveurs_web_5
+=============================================
+Nous n'avons pas encore cree un fichier d'inventaire.
+Pour l'instant, seul docker_ansible_serveurs_web_5 possède le user "devops", 
+avec le ssh avec authentification clé ou pasmis en place.
+
+$ ansible -i "docker_ansible_serveurs_web_5," all -u devops -m ping
 
 
 
 
 
-Quulques outils git:
+
+Quelques outils git:
 ====================
 echo "# docker_ansible" >> README.md
 git init
@@ -72,3 +103,9 @@ docker-compose scale serveurs_web=5
 docker-compose down
 ==> https://docs.docker.com/compose/reference/stop/
 ####
+
+
+
+
+
+
